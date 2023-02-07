@@ -1,4 +1,7 @@
+import time
+
 from fastapi import APIRouter, Depends
+from fastapi_cache.decorator import cache
 from sqlalchemy import select, insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -26,6 +29,9 @@ async def add_specific_operation(new_operation: OperationCreate, session: AsyncS
     await session.commit()
     return {"status": "success"}
 
-@router.get('/ad')
-async def test():
-    pass
+
+@router.get('/longgggggggggggggggggg')
+@cache(expire=360)
+async def long_func():
+    time.sleep(5)
+    return "many datadadadadadadata"
