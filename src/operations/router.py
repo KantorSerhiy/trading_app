@@ -25,3 +25,7 @@ async def add_specific_operation(new_operation: OperationCreate, session: AsyncS
     await session.execute(statement)
     await session.commit()
     return {"status": "success"}
+
+@router.get('/ad')
+async def test():
+    pass
